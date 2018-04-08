@@ -1,0 +1,106 @@
+# 怎么实现水波纹效果？
+
+
+特别注意: 此效果API21以上才能用,21以下会报错. 所以最小版本要设置为21
+
+
+
+# 材料设计在
+并使用 Android 5.0（API 级别 21）及以上版本所提供的新组件和功能。
+
+
+
+# 开发原则
+
+并使用 Android 5.0（API 级别 21）及以上版本所提供的新组件和功能。
+在Android5.0及以上用
+
+在Android5.0以下不用。
+
+就这么简单粗暴。
+
+
+## 看看福利社咋做的？
+拿过来抄一抄
+
+
+E:\BeautyMall\BeautyMall\beautyMall\src\main\java\com\adnonstop\beautymall\adapters\PlaceOrderAdapter.java
+ itemView = mInflater.inflate(R.layout.item_place_order_payway_bm, parent, false);
+ 
+ 
+
+
+<CheckBox
+            android:id="@+id/cbox_pay_way_zhifubao"
+            style="@style/shop_bag_cbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/x28"
+            android:checked="true"/>
+
+			
+<style name="shop_bag_cbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bm_selector_shop_cbox</item>
+    </style>
+	
+	<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:drawable="@drawable/bm_icon_circle"/>
+    <item android:state_checked="false"  android:drawable="@drawable/bm_icon_circle_no"/>
+    <item android:drawable="@drawable/bm_icon_circle_no"/>
+</selector>
+
+
+
+
+
+
+<LinearLayout
+        android:id="@+id/ll_payway_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x88"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x44"
+            android:layout_height="@dimen/x44"
+            android:layout_marginLeft="@dimen/x28"
+            android:src="@drawable/bm_icon_money"/>
+
+        <TextView
+            android:id="@+id/txt_place_order_payway_wallet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/x1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:paddingLeft="@dimen/x10"
+            android:textSize="@dimen/x28"
+            android:textColor="@color/bm_color_333333"
+            android:text="@string/bm_place_order_wallet_remainder"/>
+
+        <FrameLayout
+            android:id="@+id/fl_switch_pay_way_cash"
+            android:layout_width="@dimen/x128"
+            android:layout_height="@dimen/x84"
+            android:layout_marginRight="@dimen/x6">
+
+            <ImageView
+                android:id="@+id/img_switch_trick_cash"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bm_btn_switch_off_01"/>
+
+            <ImageView
+                android:id="@+id/img_switch_thumb_cash"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bm_btn_switch_off_02"/>
+        </FrameLayout>
+
+    </LinearLayout>
+	
+	

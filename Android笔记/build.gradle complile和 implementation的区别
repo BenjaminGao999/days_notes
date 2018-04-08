@@ -1,0 +1,26 @@
+build.gradle
+
+添加依赖
+compile和implementation的区别
+
+stackoverflow
+https://stackoverflow.com/questions/44493378/whats-the-difference-between-implementation-and-compile-in-gradle
+
+Dependencies appearing in the api configurations will be transitively exposed to consumers of the library,
+ and as such will appear on the compile classpath of consumers.
+ api导入依赖 要暴露给lib的调用者
+ 
+
+Dependencies found in the implementation configuration will, on the other hand, not be exposed to consumers, and therefore not leak into the consumers' compile classpath. 
+
+implementation导入依赖， 不会暴露给lib的调用者， 
+缩短了编译路径， 加快了编译速度
+
+
+ 
+可以试一试在 lib中 添加依赖 ， 然后在module app中依赖这个 lib， 看看在 APP中能否 引用到 lib中 添加的依赖库
+
+确实如我所总结， implementation导入依赖， 不会暴露给lib的调用者， 
+ api导入依赖 要暴露给lib的调用者
+ 
+ 

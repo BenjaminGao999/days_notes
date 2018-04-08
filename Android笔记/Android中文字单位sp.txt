@@ -1,0 +1,53 @@
+类似地，您应选择 sp（缩放独立的像素）来定义文本 大小。sp 缩放系数取决于用户设置，系统 会像处理 dp 一样缩放大小。
+
+
+setTextSize
+added in API level 1
+void setTextSize (int unit, 
+                float size)
+Set the default text size to a given unit and value. See TypedValue for the possible dimension units.
+
+Note: if this TextView has the auto-size feature enabled than this function is no-op.
+
+
+
+
+setTextSize
+added in API level 1
+void setTextSize (float size)
+Set the default text size to the given value, interpreted as "scaled pixel" units. This size is adjusted based on the current density and user font size preference.
+
+Note: if this TextView has the auto-size feature enabled than this function is no-op.
+
+
+
+
+TextView textView = new TextView(this);
+
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+
+        Log.i(TAG, "onCreate: textView textSize " + textView.getTextSize());
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float px = displayMetrics.density * 10;
+        Log.i(TAG, "spTest: 10px = "+px);
+
+        float scaledDensity = displayMetrics.scaledDensity;
+        Log.i(TAG, "spTest: scaledDensity = "+scaledDensity);
+		
+		
+		
+## DisplayMetrics
+	||| scaledDensity
+
+float scaledDensity
+A scaling factor for fonts displayed on the display. This is the same as density, except that it may be adjusted in smaller increments at runtime based on a user preference for the font size.
+
+
+sp 缩放值 由DisplayMetrics 中的 scaledDensity来指定，这个 scaledDensity默认和 DisplayMetrics中的 density 相等， 当用户在设置页面修改了字体的大小， 这个 scaledDensity也会跟着变动的， 
+
+所以喽字体的大小就改变啦。
+
+
+一般App都不用sp指定字体大小的， 都是自己在App内部， 自己设置字体大小。要么就是没有这个字体大小选择的功能的。
+

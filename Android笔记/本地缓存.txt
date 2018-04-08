@@ -1,0 +1,72 @@
+本地缓存
+https://developer.android.com/guide/topics/data/data-storage.html#pref
+
+# 本地缓存之 sharedPreferences
+sharedPreferences支持的数据类型有 
+SharedPreferences 类提供了一个通用框架，以便您能够保存和检索原始数据类型的永久性键值对。 您可以使用 SharedPreferences 来保存任何原始数据：布尔值、浮点值、整型值、长整型和字符串。 此数据将跨多个用户会话永久保留（即使您的应用已终止亦如此）。
+仅支持以下数据类型的值
+ Set<String> values
+ boolean value
+  float value
+  int value
+  long value
+  String value
+  
+以key-value的形式保存数据
+
+  
+# 本地存储之外部存储
+以文件的方式进行存储
+
+
+# 本地存储之内部存储
+
+
+
+# 本地存储之数据库存储
+
+每一行都是一条记录
+
+行数以自增的整数标识 
+每行有 许多列 ， 每一列对应一个字段， 
+
+数据库的区分方式是 数据名 ， 表名
+可以在一个APP里创建多个数据库
+也可以在一个 数据库里创建多个表格
+
+数据库支持的数据类型是
+
+看我们SQlite的官方文档写的多好（https://www.sqlite.org/datatype3.html）， 
+有些文章对这个理解的过于复杂， 甚至是错误， 官方的才对嘛
+
+NULL. The value is a NULL value.
+
+INTEGER. The value is a signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.
+
+REAL. The value is a floating point value, stored as an 8-byte IEEE floating point number.
+
+TEXT. The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).
+
+BLOB. The value is a blob of data, stored exactly as it was input.
+
+## SQLite没有fixed-point 数据类型, 涉及到金融数据存放的话， 可以用java的bigDecimal转String存储
+
+## 字符串类型的最大长度可达10个亿的字节， 反正一般情况下绝对用不完的
+String 和 blob 可以是 10个亿的字节长度
+https://www.sqlite.org/limits.html
+
+## 字符编码类型是根据 SQLite数据库的编码方式指定的
+TEXT. The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).
+
+## Android SQLite 默认采用的是 utf-8编码
+
+## 查询数据库会阻塞主线程吗？
+直接采用异步回调的方式不就行了吗？
+
+
+
+
+
+
+
+

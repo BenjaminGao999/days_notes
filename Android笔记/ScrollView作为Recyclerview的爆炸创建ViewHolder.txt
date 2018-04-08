@@ -1,0 +1,172 @@
+RecyclerView以Framelayout做容器， 在7个ViewHolder间复用
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 5643610
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 255335307
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 197805160
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 142278066
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 257323267
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 160381056
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 137510585
+03-13 16:28:30.336 10580-10580/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: size = 7
+
+同样的RecyclerView以FrameLayout作为父容器， 只不过 item的高度缩小了， 那整体viewHolder的创建情况及复用情况
+
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 225237253
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 5643610
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 255335307
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 197805160
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 107413633
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 13153574
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 235595111
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 20135700
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 226632637
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 222632543
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 149904556
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 86969717
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 144740618
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 4914555
+03-13 16:35:51.684 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: size = 14
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 225237253
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 5643610
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 255335307
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 197805160
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 107413633
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 13153574
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 235595111
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 20135700
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 226632637
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 222632543
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 149904556
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 86969717
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 144740618
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 4914555
+03-13 16:35:59.964 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: size = 14
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 225237253
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 5643610
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 255335307
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 197805160
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 107413633
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 13153574
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 235595111
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 20135700
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 226632637
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 222632543
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 149904556
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 86969717
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 144740618
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 4914555
+03-13 16:36:05.002 18878-18878/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: size = 14
+
+
+
+
+
+
+
+
+
+以ScrollView作为Recyclerview的容器， 一瞬间全部爆炸的创建ViewHolder。
+
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 5643610
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 255335307
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 197805160
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 107413633
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 13153574
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 235595111
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 20135700
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 226632637
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 142278066
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 257323267
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 160381056
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 137510585
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 144130814
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 222632543
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 149904556
+03-13 16:30:32.529 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 86969717
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 144740618
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 4914555
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 21731224
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 217058289
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 54440918
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 167900759
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 170825028
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 233338413
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 63584098
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 29729011
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 119652784
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 8603689
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 9988014
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 252664143
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 148457692
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 249511397
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 235360442
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 227687275
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 85989064
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 206230369
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 105496198
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 118956871
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 25417588
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 142623901
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 32718098
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 253275363
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 213972704
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 178359705
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 222566494
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 203371583
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 49193228
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 267676245
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 104160362
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 182244699
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 141214200
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 173954769
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 256169270
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 118058039
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 126223780
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 178294541
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 50400962
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 100570323
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 217045008
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 39063305
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 72701198
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 252947247
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 249718076
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 161845957
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 127251482
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 230280011
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 185506088
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 80844353
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 4913126
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 156750119
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 122167252
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 90199421
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 264154226
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 249977027
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 15820096
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 52546681
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 4660670
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 139181599
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 120034668
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 149534517
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 156456906
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 225975611
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 195992664
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 17535409
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 137832086
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 188830231
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 110962180
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 227973101
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 162993698
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 201259187
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 147365488
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 139576809
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 5534318
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 233205007
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 150024604
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 108517285
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 56182650
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 52874027
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 128830344
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: hashcode = 204687649
+03-13 16:30:32.530 13037-13037/com.adnonstop.scrollviewdemo I/MyRecyclerViewAdapter: onBindViewHolder: size = 100
+
+
+

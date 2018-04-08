@@ -1,0 +1,19 @@
+|||| ---
+||| --- Path
+mPath
+mDest
+
+
+|||----|||
+||| -- Paint
+mPaint
+mPaintGray
+mTextPaint
+
+||| ---
+|||  --- PathMeasure
+mPathMeasure
+
+
+||| ---
+||| --- PathEffect 

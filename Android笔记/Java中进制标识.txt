@@ -1,0 +1,12 @@
+Java中进制选取
+
+#二进制binary
+ob开头
+
+#八进制octal
+0开头
+
+#十六进制hexadecimal
+ox
+
+

@@ -1,0 +1,73 @@
+# 数据保存这一块
+
+# 动态权限申请
+
+
+# 网络通信这一块
+即时通信，http, https， tcp/ip, udp 
+
+# 拍照的贴纸处理啊， camera, opengl 
+
+# 视频流的处理啊
+
+
+# NDK编程
+
+
+
+本地数据持久化存储
+
+[参考文档](http://blog.csdn.net/u012527802/article/details/51133773)
+Android存储方式：SharedPreferences、内部存储、外部存储、SQLite
+
+1、SharedPreferences
+
+保存路径：data/data/packageName/...
+
+说明：是用来存储一些Key/Value类似的成对的基本数据类型，注意，它只能存储基本数据类型，也即int, long, boolean, String, float。在Android当中SharedPreferences使用最多的地方也是用来保存配置（Settings）信息，系统中和各个应用中的Settings都是这样。
+
+因为SharedPreferences背后是使用xml文件保存数据，getSharedPreferences(name,mode)方法的第一个参数用于指定该文件的名称，名称不用带后缀，后缀会由Android自动加上。方法的第二个参数指定文件的操作模式，共有四种操作模式，
+
+这四种模式代表的含义为：
+
+Context.MODE_PRIVATE    =  0
+Context.MODE_APPEND    =  32768
+Context.MODE_WORLD_READABLE =  1
+Context.MODE_WORLD_WRITEABLE =  2
+
+Context.MODE_PRIVATE：为默认操作模式，代表该文件是私有数据，只能被应用本身访问，在该模式下，写入的内容会覆盖原文件的内容，如果想把新写入的内容追加到原文件中。可以使用Context.MODE_APPEND
+Context.MODE_APPEND：模式会检查文件是否存在，存在就往文件追加内容，否则就创建新文件。
+Context.MODE_WORLD_READABLE和Context.MODE_WORLD_WRITEABLE用来控制其他应用是否有权限读写该文件。
+MODE_WORLD_READABLE：表示当前文件可以被其他应用读取；MODE_WORLD_WRITEABLE：表示当前文件可以被其他应用写入。
+
+
+
+
+
+内部存储， 涉及到啥？
+内部缓存和内部file
+
+
+
+LRUCache
+
+Activity&Fragment&View运行时保存
+
+既然要保存数据， 那就得有足够的可用空间啊， 
+
+保存文件# 
+内部存储# 
+用户或其他应用均无法访问
+卸载应用时，一并卸载掉的。
+
+外部存储#
+全局可读；
+只有通过getExternalFilesDir()保存的文件才可被移除， 当卸载应用时
+
+
+还有啊， 阿里巴巴的文档， Android 开发文档， 关于 Activity的状态保存
+Activity对Fragment是怎么维护的，状态保存吧 
+
+
+
+

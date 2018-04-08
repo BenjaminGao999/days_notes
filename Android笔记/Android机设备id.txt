@@ -1,0 +1,114 @@
+设备id
+
+
+IMEI
+国际移动设备识别码（International Mobile Equipment Identity，IMEI），即通常所说的手机序列号、手机“串号”，用于在移动电话网络中识别每一部独立的手机等行动通讯装置，相当于移动电话的身份证。序列号共有15位数字，前6位（TAC）是型号核准号码，代表手机类型。接着2位（FAC）是最后装配号，代表产地。后6位（SNR）是串号，代表生产顺序号。最后1位（SP）一般为0，是检验码，备用。国际移动设备识别码一般贴于机身背面与外包装上，同时也存在于手机内存中，通过输入*#06#即可查询。
+
+
+MEID
+PESN
+
+
+
+IMEI（International Mobile Equipment Identity）是国际移动设备识别码的缩写。俗称“手机串号”、“手机串码”、“手机序列号”，用于在GSM移动网络中识别每一部独立的手机，相当于手机的身份证号码。IMEI码适用于GSM和WCDMA制式的移动电话和铱星卫星电话，而CDMA手机采用MEID码，与IMEI码有所区别。全球每部通过正规渠道销售的GSM手机均有唯一的IMEI码。IMEI码由GSMA协会统一规划，并授权各地区组织进行分配，在中国由工业和信息化部电信终端测试技术协会（TAF）[1]  负责国内手机的入网认证，其他分配机构包括英国BABT、美国CTIA等。
+
+
+
+双卡双待手机会有两个IMEI，IMEI和IMSI存在一一对应的关系。因为双卡双待手机两个卡槽都能插SIM卡，在GSM蜂窝通信网络中被看作是集成在一起的两个设备，所以会被分配有2个IMEI码[2]  。
+
+
+
+如何区分虚拟设备和非虚拟设备呢？
+
+
+
+
+这两天在开发型男的钱包部分， 没来及解决呢。 不过我用了 夜神模拟器试过了。， 改变手机的设备id， 我这边是不会变更的， 只有改变了手机型号和厂家我这边取出的设备id才会改变的
+
+
+而手机型号和厂家， 对于夜神模拟器来说， 最多只有10个不到的机型
+
+
+也就说就算装了app到夜神模拟器上， 每台模拟器也只有10次不到的机会， 伪装成真机
+
+
+可以根据一些特征值来取设备的唯一标识， 而这些特征值要求是不随手机型号， 厂家， 和 imei码 而变的，， 也就是忽略这3个参数 手机型号， 厂家， 和 imei码， 看看能不能达到唯一的定位设备。
+
+
+这种取特征值的，会不会有机型不兼容？
+
+
+这个还不清楚， 不过尽量试试看
+
+huawei mla_l12
+863254010598109
+
+
+03-28 14:15:34.058 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-fc8e-77b5-ffff-ffffc7c725a4
+03-28 14:15:34.058 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = ffffffff-f45f-8556-ffff-fffff221c732
+
+huawei mla_l12
+861339010635787
+03-28 14:16:14.318 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-fc8e-77b5-ffff-ffffc7c725a4
+03-28 14:16:14.318 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = ffffffff-f45f-8556-ffff-fffff221c732
+
+vivo x20a
+861339010635787
+03-28 14:17:41.547 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-fc8e-70ce-ffff-ffffc7c725a4
+03-28 14:17:41.547 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = ffffffff-f45f-8556-ffff-fffff221c732
+
+
+samsung SM-g930k
+866934010657313
+
+03-28 14:25:01.821 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-fc8e-7bf2-ffff-ffffc7c725a4
+03-28 14:25:01.821 2798-2798/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = ffffffff-f45f-8556-ffff-fffff221c732
+
+
+
+huaweip9
+869157026573269
+03-28 14:26:13.250 904-904/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-fcff-343a-ffff-ffffee667aae
+03-28 14:26:13.270 904-904/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = 00000000-6f64-2fc4-cd05-19c00033c587
+
+
+galaxy_nexus_api_16
+IMEI 000000000000000
+03-28 06:30:19.514 2083-2083/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-bf3a-62bf-ffff-ffffef05ac4a
+03-28 06:30:19.524 2083-2083/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = ffffffff-9f22-0b43-ffff-ffff99d603a9
+
+
+
+Nexus_5
+imei 00000000000
+03-28 06:38:04.217 4019-4019/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-c977-7672-ffff-ffffef05ac4a
+03-28 06:38:04.247 4019-4019/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = 00000000-10bc-b871-ffff-ffff99d603a9
+
+
+
+Nexus_5x
+imei 00000000000
+03-28 06:47:22.941 2725-2725/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-c484-9098-ffff-ffffef05ac4a
+03-28 06:47:22.963 2725-2725/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = 00000000-3887-8bf3-ffff-ffff99d603a9
+
+
+
+
+杜绝在同一台模拟器上作弊
+
+
+在同一台电脑上卸载再安装模拟器， 防不了
+
+
+03-28 15:04:54.530 1239-1239/com.adnonstop.deviceidentify I/MainActivity: onClick: uniquePsuedoDeviceID = ffffffff-fc8e-7b76-ffff-ffffc7c725a4
+03-28 15:04:54.530 1239-1239/com.adnonstop.deviceidentify I/MainActivity: onClick: myUUID = ffffffff-f460-695c-ffff-fffff221c732
+
+
+
+
+
+
+
+ 
+ 
+ 

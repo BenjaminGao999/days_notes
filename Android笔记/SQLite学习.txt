@@ -1,0 +1,97 @@
+SQLite
+
+# 查看数据库编码方式
+http://ytluck.github.io/data-mining/my-dataming-post-07.html
+
+SQLite没有配置文件，所有的配置都是使用编译指令来实验<pragma>,包括了运行信息等
+控制字符串如何编码及存储在数据库文件中
+sqlite编码方式由pragma encoding设定，只有以下几种
+PRAGMA encoding;   --查询当前编码方式，默认utf8
+PRAGMA encoding = "UTF-8"; 
+PRAGMA encoding = "UTF-16"; 
+PRAGMA encoding = "UTF-16le"; 
+PRAGMA encoding = "UTF-16be";
+如果文件路径出现中文，就会导致打开失败.sqlite数据库使用的是UTF-8编码方式，而传入的字符串是ASCII编码或Unicode编码，导致字符串格式错误。解决方案是在调用sqlite接口之前，先将字符串转换成UTF-8编码，各种字符串编码转换函数。
+
+
+
+# SQLite 的 PRAGMA 命令是一个特殊的命令，可以用在 SQLite 环境内控制各种环境变量和状态标志。一个 PRAGMA 值可以被读取，也可以根据需求进行设置。
+
+http://www.runoob.com/sqlite/sqlite-pragma.html
+
+# Android——SQLite 默认采用的是 utf-8 编码
+
+
+
+## Android中采用数据库做本地缓存
+
+
+每一行都是一条记录
+
+行数以自增的整数标识 
+每行有 许多列 ， 每一列对应一个字段， 
+
+数据库的区分方式是 数据名 ， 表名
+可以在一个APP里创建多个数据库
+也可以在一个 数据库里创建多个表格
+
+数据库支持的数据类型是
+
+看我们SQlite的官方文档写的多好（https://www.sqlite.org/datatype3.html）， 
+有些文章对这个理解的过于复杂， 甚至是错误， 官方的才对嘛
+
+NULL. The value is a NULL value.
+
+INTEGER. The value is a signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.
+
+REAL. The value is a floating point value, stored as an 8-byte IEEE floating point number.
+
+TEXT. The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).
+
+BLOB. The value is a blob of data, stored exactly as it was input.
+
+## SQLite没有fixed-point 数据类型, 涉及到金融数据存放的话， 可以用java的bigDecimal转String存储
+
+## 字符串类型的最大长度可达10个亿的字节， 反正一般情况下绝对用不完的
+String 和 blob 可以是 10个亿的字节长度
+https://www.sqlite.org/limits.html
+
+## 字符编码类型是根据 SQLite数据库的编码方式指定的
+TEXT. The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).
+
+
+
+# utf-8 和 unicode的区分
+编码方式
+编码集
+Unicode
+http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
+
+Unicode（中文：万国码、国际码、统一码、单一码）是计算机科学领域里的一项业界标准。它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和处理文字。
+
+需要注意的是，Unicode 只是一个符号集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。
+它们造成的结果是：1）出现了 Unicode 的多种存储方式，也就是说有许多种不同的二进制格式，可以用来表示 Unicode。2）Unicode 在很长一段时间内无法推广，直到互联网的出现。
+
+Unicode解决了给世界上每一个文字或符号确定了一个唯一的id值， 这个id值， 这个id值用16进制写的， 但是却没有明确指出针对不同长度的id值该采用何种存储方式和内存分配方式， 
+Utf-8是一个 不同长度的id值的存储方式和内存长度分配的一种方式。 
+（http://www.san-da.com/tools/UnicodeTab.htm）
+汉字(http://www.qqxiuzi.cn/zh/hanzi-unicode-bianma.php)
+
+Unicode伴随着通用字符集的标准而发展，同时也以书本的形式[1]对外发表。Unicode至今仍在不断增修，每个新版本都加入更多新的字符。目前最新的版本为2017年6月20日公布的10.0.0[2]，已经收录超过十万个字符（第十万个字符在2005年获采纳）。
+Unicode涵盖的数据除了视觉上的字形、编码方法、标准的字符编码外，还包含了字符特性，如大小写字母。
+
+
+
+互联网的普及，强烈要求出现一种统一的编码方式。UTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式。
+其他实现方式还包括 UTF-16（字符用两个字节或四个字节表示）和 UTF-32（字符用四个字节表示），不过在互联网上基本不用。重复一遍，这里的关系是，UTF-8 是 Unicode 的实现方式之一。
+
+UTF-8 最大的一个特点，就是它是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。
+
+
+utf-8 bom和无bom编码区分
+UTF-8 不需要 BOM 来表明字节顺序。
+
+你只需要知道用UTF-8来作为编码方式就可以了
+
+
+

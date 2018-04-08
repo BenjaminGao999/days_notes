@@ -1,0 +1,62 @@
+fastJson支持的序列化和反序列化数据类型
+
+
+# 啥叫序列化和反序列化？
+https://www.jianshu.com/p/5a85011de960
+对象序列化（serialization）和反序列化（deserialization）是将对象转化为便于传输的格式进行发送和接收的两个操作。
+常见的序列化格式有字节数组，json字符串，xml字符串等。
+
+
+# fastJson序列化和反序列化支持的数据类型？
+首先json序列化和反序列化支持哪些数据类型呢？
+json支持的数据类型
+http://wiki.jikexueyuan.com/project/json/data-types.html
+http://wangchujiang.com/spec/html/e-json.html
+
+基本数据类型
+Number可以表示整数和浮点数。
+Boolean可以表示真假，值为true或false。
+String表示一个字符串。
+Null通常用于表示空对象。
+
+复合数据类型
+Object是无序的集合，以键值对的方式保持数据。一个Object中包含零到多个name/value的数据，数据间以逗号(,)分隔。name为String类型，value可以是任意类型的数据。
+
+Object的最后一个元素之后一定 不要(MUST NOT) 加上分隔符的逗号，否则可能导致解析出错。
+
+Array(数组)为多个值的有序集合，数组元素间以逗号(,)分隔。
+
+
+啥叫浮点数？
+在计算机科学中，浮点（英语：floating point，缩写为FP）是一种对于实数的近似值数值表现法，由一个有效数字（即尾数）加上幂数来表示，通常是乘以某个基数的整数次指数得到。
+以这种表示法表示的数值，称为浮点数（floating-point number）。利用浮点进行运算，称为浮点计算，这种运算通常伴随着因为无法精确表示而进行的近似或舍入。
+
+尤其要把 数字类型（Number） 单独讲讲
+
+看看IBM数怎么做的
+https://www.ibm.com/support/knowledgecenter/zh/SSFTN5_8.5.6/com.ibm.wbpm.wid.integ.doc/topics/rjsonpropstypeconv.html
+
+BigDecimal转为double
+http://www.cnblogs.com/digdeep/p/4459781.html
+
+针对实数小数精度丢失的原因是
+对于一个实数小数 其在计算机中的浮点数表示是只能用二进制了，而二进制只能是最接近的近似值了
+实数2.4 在计算机中只能以（二进制换算为十进制）2.3999999... 表示了
+
+涉及到金融实数小数的计算， 要用到BigDecimal
+https://blog.csdn.net/winy_lm/article/details/50324311
+
+
+## json基本数据类型
+从服务端请求的json数据中， 有键值对的值是实数的小数， 那把这个小数在反序列化时，赋值给一个double类型的数据， 
+double是浮点型， 从实数小数到double浮点型的存储， 其间将会精度丢失的， 
+如果不要精度丢失，咋办呢？
+简单服务端把这个实数小数用BigDecimal搞成String， 然后把这个String抛给客户端， 客户端再把这个String转成BigDecimal，就不存在服务端到客户端的精度损失问题了
+
+## 结论是
+
+序列化和反序列化都用double就行
+
+
+
+

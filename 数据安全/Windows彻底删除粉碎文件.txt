@@ -1,0 +1,21 @@
+彻底删除粉碎文件
+
+有数据恢复工具
+查看删除的数据可以被恢复？
+https://www.zhihu.com/question/35394612
+http://alexiachen.github.io/blog/2016/09/02/data-erasure/
+
+
+也会有文件彻底粉碎工具
+https://zhuanlan.zhihu.com/p/23934273
+windows自带的慢速格式化
+360安全卫士 文件粉碎机
+
+
+
+### 数据擦除工具 for windows
+(eraser)[https://eraser.heidi.ie/download/]
+
+
+
+

@@ -1,0 +1,203 @@
+屏幕适配的问题
+
+屏幕配置
+In order to categorize devices by their screen type, Android defines two characteristics for each device: screen size (the physical size of the screen) and screen density (the physical density of the pixels on the screen, known as DPI).
+
+To simplify the different configurations, Android generalizes these variants into groups that make them easier to target:
+
+# Four generalized sizes: small, normal, large, and xlarge.
+# And several generalized densities: mdpi (medium), hdpi (high), xhdpi (extra high), xxhdpi (extra-extra high), and others.
+
+
+By default, your app is compatible with all screen sizes and densities, because the system makes the appropriate adjustments to your UI layout and image resources as necessary for each screen. However, you should optimize the user experience for each screen configuration by adding specialized layouts for different screen sizes and optimized bitmap images for common screen densities.
+
+
+4种尺寸划分， small， normal， large， xlarge 分别是多少英寸？
+官方文档上写的有
+
+四种通用尺寸：小、正常、 大 和超大
+注：从 Android 3.2（API 级别 13）开始，这些尺寸组 已弃用，而采用根据可用屏幕宽度管理屏幕尺寸的 新技术。
+
+
+
+六种通用的密度：
+ldpi（低）~120dpi
+mdpi（中）~160dpi
+hdpi（高）~240dpi
+xhdpi（超高）~320dpi
+xxhdpi（超超高）~480dpi
+xxxhdpi（超超超高）~640dpi
+
+通用尺寸和通用密度， 并不是彼此全部拥有， 
+而是 彼此部分交错重合的关系。
+
+通用密度就是个范围，并不会精确， 而Android在最后将会做调整。 
+Android 将这些差异抽象概括到应用，使您可以提供为通用尺寸和密度设计的 UI，让系统按需要处理任何最终调整。
+也就是说 屏幕的dpi到最后的取值是在指定的数组内的， 
+目前这个数组是 [120,160,240,320,480,640]
+
+
+
+不对我要的是屏幕的w/h比、 英寸、 dpi
+屏幕最基本的参数就是 
+A. 屏幕对角线长度，以英寸为单位
+B. 屏幕的宽高比， w/h
+C. 屏幕的像素密度 dpi
+
+
+
+想要做到全适配， 适配各种屏幕， 包括 手机、 pad, tv， 你得怎么做？ 你得设计不同的 UI layouts, 也就是要求设计能够针对 手机、 pad, tv, 做出不同的UI设计稿。
+既然有这么多屏幕类型， 那就要根据公司的业务特点， 有针对性的适配，主要还是针对移动应用的用户，就是手机喽， 
+关注点就要落在手机上， 其他的暂且就不去考虑， 先解决手机的需求， 
+
+那就就要分析啊， 现在的手机屏幕都是个什么情况， 目前市面上的手机屏幕的最基本的3个参数分布在哪里？ 
+
+谷歌给出的分析是 normal占比是 89.8%， 
+dpi分布是 hdpi 29.5%, xhdpi 39.6%, xxhdpi 22.5%， 合起来占比dpi 91.%
+
+注意以上对 尺寸和dpi的统计都是 单独统计的， 互不相关的， 是一种对维度统计方式
+
+针对屏幕适配， 写代码的参考是啥？ 屏幕的宽多少像素、 高多少像素， 以及dpi, dpi的得出还得看 屏幕对角线有多少英尺
+
+diagonal 是对角线的意思
+
+dp是啥？ 
+在定义 UI 布局时应使用的虚拟像素单位，用于以密度无关方式表示布局维度 或位置。
+
+密度无关像素等于 160 dpi 屏幕上的一个物理像素，这是 系统为“中”密度屏幕假设的基线密度。在运行时，系统 根据使用中屏幕的实际密度按需要以透明方式处理 dp 单位的任何缩放 。dp 单位转换为屏幕像素很简单： px = dp * (dpi / 160)。 例如，在 240 dpi 屏幕上，1 dp 等于 1.5 物理像素。在定义应用的 UI 时应始终使用 dp 单位 ，以确保在不同密度的屏幕上正常显示 UI。
+
+
+
+假设 x= w/h， 这里的w和h单位都是px, 这个x就是 屏幕的宽高比嘛， 这个diagonal的单位是英尺 inch, 
+经过我的计算我得出了
+宽度dp是 w(dp) = (1/(1+x^2))*（diagonal/160)
+
+由此可见， 宽度的dp和高度的dp值， 真的是和dpi无关的， 只要能够保证，宽高比是一样的， 屏幕的对角线宽度是一样的， 就行了
+
+而diagonal/160总是会在 [120,160,240,320,480,640]这个密度组中取一个值， 具体由Android提供决定
+由此可见 diagonal/160 中的 diagonal在 某一通用尺寸区间内， 结果就是一样的，
+而现在这个通用尺寸区间占比 89.8% 落在了 normal区间，
+normal 细分大概可以分成3个区间 3， 4， 5 中值左右的区间
+基本上在  5英寸的 1080*1920 这个参数上了
+现在一般是 
+A]宽720px 320dpi
+ B] 宽1080 480dpi
+ 都是 宽360dp
+ 
+我在百度流量统计院中统计到 
+宽度dp就取[320dp, 360dp]
+且360dp占比在 99%以上的。
+ 
+而且宽px集中在[1080px, 720px, 540px]
+且都是在360dp的宽度上。  
+
+宽度有多少dp这样计算是不对的
+宽度dp是 w(dp) = (1/(1+x^2))*（diagonal/160)
+假设宽度是 w, 高度是 h, 均以px为单位
+对角线长度是 diagonal, 以 英尺 为单位
+dpi就是 对(w^2+h^2)开平方再除以diagonal
+这个dpi的取值 Android会把它落在 [120dpi, 160dpi, 240dpi, 320dpi, 480dpi, 640dpi] 
+而 宽度w, 目前市面上的手机屏幕的分布都在 [1080px, 720px, 540px]
+而1080px一般对应 480dpi
+720px一般对应 320dpi
+540px 一般对应 240dpi
+
+其对应的 宽度有多少dp, 一般都在 360dp, 
+还有 占比不到 1%的 320dp.
+
+
+在写代码的过程中， 用到的就是 宽度有多少dp和高度有多少dp
+只要是宽度和高度的有的dp值相等， 那么就没事了
+
+现在宽高比的覆盖面比较大的是 宽高比是 9/16
+而屏幕的尺寸集中在 4.5 - 5.5 英寸、
+结合二者的重叠率应该占到大面积了， 以9/16的宽高比和4.5-5.5英寸的屏幕对角线大小去适配的， 应该是可以覆盖大面的屏幕的。
+
+那到这里， 屏幕适配的问题的关键点找出来了， 那就是找到 典型的宽高比， 并且找到典型的屏幕对角线大小， 然后组合
+这个 宽高比是 9/16， 对角线inch是 5英寸的， 是一个标准。
+
+然后就是 宽高比是 9/16的， 对角线inch是 4.5英寸的，是一个标准
+
+宽高比是 9/16的， 对角线是 5.5英寸的是一个标准， 
+
+找出典型， 占比 较大的， 去单独适配， 
+
+百度流量研究院和腾讯移动分析
+对Android手机统计的都是啥？ 
+关于屏幕统计的都是  分辨率
+
+能得到啥启示呢？
+可不可以只依靠屏幕分辨率 这单一的信息做屏幕适配呢？
+
+
+
+### 
+所以采取 按照宽高比例进行切分，这套方案也没啥问题。
+验证下， 未列举出的 分辨率会怎样？
+
+未列出的资源文件， 会向下取
+向下取规则
+values-1024x600
+
+如果是获取y
+先取高最接近， 再取宽最接近
+
+如果是获取x
+先取宽最接近， 再取高最接近
+
+由此你能看出， Android的资源寻找算法还是很聪明的， 你要找啥， 你要找的东西的权重的优先级就会提到最高的，
+比如上面的我是 找x, 那就把x的优先级提到最高， 先取宽最接近，再取高最接近的。
+如果你要找的是y， 那就把y的优先级提到最高， 先取高最接近的， 再取宽最接近的。
+
+
+### 
+备用资源怎么做扩展名？
+比如这个 values-1280x720
+还有其他的方式吗？
+values-???
+
+ 其他的res/ 下的文件夹写备用资源呢？
+
+您还应该为特定设备配置提供备用资源，方法是将它们分组到专门命名的资源目录中。 
+在运行时，Android 会根据当前配置使用适当的资源。例如，您可能需要根据屏幕尺寸提供不同的 UI 布局，或者根据语言设置提供不同的字符串。
+
+为一组资源指定特定于配置的备用资源：
+
+A] 在 res/ 中创建一个以 <resources_name>-<config_qualifier> 形式命名的新目录。
+<resources_name> 是相应默认资源的目录名称（如表 1 中所定义）。
+<qualifier> 是指定要使用这些资源的各个配置的名称（如表 2 中所定义）。
+您可以追加多个 <qualifier>。以短划线将其分隔。
+
+注意：追加多个限定符时，必须按照表 2 中列出的相同顺序放置它们。如果限定符的顺序错误，则该资源将被忽略。
+
+
+B] 将相应的备用资源保存在此新目录下。这些资源文件的名称必须与默认资源文件完全一样。
+
+
+layouts
+--- layout
+--- layouts_category2
+   --- layout
+      --- activity_main.xml
+   --- layout-w360dp
+      --- activity_main.xml
+
+	  也是没问题的
+	  
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
