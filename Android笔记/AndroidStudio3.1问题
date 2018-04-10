@@ -1,0 +1,15 @@
+android studio v3.0 v3.1
+
+# deprecated
+gradle.properties文件
+android.enableAapt2=false
+
+http://www.littlemon.me/?cat=14
+
+
+
+# compile deprecated
+
+用 implementation
+和 api
+

@@ -64,6 +64,8 @@ TEXT. The value is a text string, stored using the database encoding (UTF-8, UTF
 直接采用异步回调的方式不就行了吗？
 
 
+## 在高版本的测试机和 真机上均不能导出数据库， 为了导出数据库可以选择将数据库保存的路径改一下子
+
 
 
 

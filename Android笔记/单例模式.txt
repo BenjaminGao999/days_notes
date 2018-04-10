@@ -1,0 +1,6 @@
+懒汉式
+
+恶汉式
+
+https://blog.csdn.net/qq_27093465/article/details/50978916
+
