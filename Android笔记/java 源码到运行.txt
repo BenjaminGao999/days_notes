@@ -1,0 +1,183 @@
+java sourcecode到运行， 经历了啥？
+
+# 啥叫字节码
+
+Java 字节码（英语：Java bytecode）是Java虚拟机执行的一种指令格式。大多数操作码都是一个字节长，而有些操作需要参数，导致了有一些多字节的操作码。而且并不是所有可能的256个操作码都被使用；其中有51个操作码被保留做将来使用。除此之外，原始Java平台开发商，升阳微系统，额外保留了3个代码永久不使用。
+
+简而言之， 字节码就是一个指令集， 并且jvm都会识别这些指令集， 
+指令集 Instruction Set Architecture，
+
+
+所谓的跨平台， 简而言之就是 javac将源码编译成字节码， 针对不同平台实现不同的jvm就行了
+
+虚拟机， 简而言之，也就是运行在 本地操作系统（windows, linux, macOs）上的小系统(jvm)
+
+sourcecode -> bytecode -> jvm 将字节码翻译成机器语言， 直接和CPU交互了
+
+
+## 虚拟机 
+
+因为最终字节码是运行在虚拟机里面的， 所以呢， 内存分配都是jvm操作的， 所以呢， 研究jvm， 就能做好内存分配
+
+
+Java 编译器只需面向 JVM，生成 JVM 能理解的代码或字节码文件。Java 源文件经编译器，编译成字节码程序，通过 JVM 将每一条指令翻译成不同平台机器码，通过特定平台运行。
+
+
+
+## 操作系统
+
+操作系统（英语：operating system，缩写：OS）是管理计算机硬件与软件资源的计算机程序，同时也是计算机系统的内核与基石。操作系统需要处理如管理与配置内存、决定系统资源供需的优先次序、控制输入与输出设备、操作网络与管理文件系统等基本事务。操作系统也提供一个让用户与系统交互的操作界面。
+
+简而言之， os就是管理硬件的， 管理硬件 
+
+
+进程管理（Processing management）
+内存管理（Memory management）
+文件系统（File system）
+网络通信（Networking）
+安全机制（Security）
+用户界面（User interface）
+驱动程序（Device drivers）
+
+
+## jvm和os
+
+[What is the role of the OS when JVM executes a Java application? And why do we need the OS?]
+(https://stackoverflow.com/questions/8791955/what-is-the-role-of-the-os-when-jvm-executes-a-java-application-and-why-do-we-n)
+
+
+
+Your Code [calls the] JVM [calls the] OS, or with compiled code you can have Your Code [calls the] OS
+
+Similarly in C++ you might have Your Code [calls the] Boost [calls the] OS.
+
+jvm和CPU以及操作系统的关系， 大概就是， 
+jvm就是一个windows程序， 但是jvm的功能可以实现把字节码翻译而成的机器码给到os， os调取cpu执行机器码
+
+
+其实就是 源码-> 字节码->机器码-> CPU
+
+jvm外
+.java 源码被 javac 编译为字节码
+
+ClassLoader加载字节码到 jvm内 （类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验证、准备、解析、初始化、使用和卸载七个阶段。）
+
+jvm内
+字节码 被JIT 编译器编译成  底层硬件可执行 指令
+
+
+
+
+##  Java 代码编译和执行的整个过程
+
+http://wiki.jikexueyuan.com/project/java-vm/java-debug.html
+
+
+classloader 类加载器
+
+## jvm运行时内存
+
+### 线程私有的
+#### 程序计数器 program counter register
+
+#### 虚拟机栈 vm stack 
+抛 StackOverflowError 和 outofmemoryError
+
+#### 本地方法栈 native method stack 
+抛 StackOverflowError 和 outofmemoryError
+
+
+
+
+
+### 线程公共的
+#### java heap 堆栈
+仅仅抛 outofmemoryError
+
+几乎所有的对象实例和数组都在这类分配内存。Java Heap 是垃圾收集器管理的主要区域，因此很多时候也被称为“GC堆”。
+
+根据 Java 虚拟机规范的规定，Java 堆可以处在物理上不连续的内存空间中，只要逻辑上是连续的即可。如果在堆中没有内存可分配时，并且堆也无法扩展时，将会抛出 OutOfMemoryError 异常。
+
+
+
+
+#### 方法区 method area 
+仅仅抛 outofmemoryError
+
+
+方法区也是各个线程共享的内存区域，它用于存储已经已经已经已经已经已经已经已经被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。
+
+##### 内存回收
+另外，虚拟机规范允许该区域可以选择不实现垃圾回收。相对而言，垃圾收集行为在这个区域比较少出现。该区域的内存回收目标主要针是对废弃常量的和无用类的回收。
+废弃常量判断依据：
+假如有个字符串‘abc’已经进入了常量池,但是当前系统中没有任何一个string对象是叫做"abc"的， 就是没有任何String对象引用常量池中的"abc"常量， 那就是废弃的常量
+对应method area 中的  运行时常量池区域
+
+判断废弃类， 
+A 该类所有实例均被回收， 也就是 java heap中不存在该类的任何实例了； 
+B 加载该类的ClassLoader已经被回收
+C 该类对应的 java.lang.Class 对象没有在任何地方被引用， 无法在任何地方通过反射访问该类的方法
+满足，以上3个条件， 也仅仅是“可以”回收， 而并不是和对象一样， 不使用了就必然回收。
+针对 method area 中存放的 编译后的类的代码， 也就是 非 运行时常量池区域， 
+基本上可以认定不会被回收的， 
+并且只有 已经被加载的类被回收了， 类静态属性引用的对象被销毁， 当下一次在加载这个类到 method area时， 一切都是初始化的了
+这样就实现了通过 类静态属性保存运行时小对象的机会， 且跨线程公用
+
+ 
+
+##### 运行时常量池 
+运行时常量池是方法区的一部分，Class 文件中除了有类的版本、字段、方法、接口等描述信息外，
+还有一项信息是常量池（Class文件常量池），用于存放编译器生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。
+
+
+
+
+#### 直接内存
+
+在 JDK1.4 中新引入了 NIO 机制，它是一种基于通道与缓冲区的新 I/O 方式，可以直接从操作系统中分配直接内存，即在堆外分配内存，这样能在一些场景中提高性能，因为避免了在 Java 堆和 Native 堆中来回复制数据。
+
+
+## 内存回收
+Garbage Collection, GC
+
+### 哪些内存需要回收？ 什么时候回收？ 如何回收？
+
+可达性分析算法 Reachability Analysis 
+GC Roots
+
+在Java语言中， 可作为 GC Roots 的对象包括：
+A. vm stack(栈帧中的本地变量表)中引用的对象.
+B. native method stack 中JNI(Native方法)引用的对象
+
+C. method area 中 类静态属性引用的对象.
+D. method area 中 常量引用的对象.
+
+
+
+从GC Roots开始向下搜索， 搜索走过的路径成为引用链(reference chain ), 当一个对象到GC Roots没有任何引用链相连， 则证明此对象是不可用的。 
+
+
+### 引用 reference 
+
+strong reference
+
+只要强引用还在， 就不会垃圾回收掉。 
+Object obj =  new Object();
+只要obj 在， 其引用的实例就不会被回收掉的。
+
+soft reference
+只有内存不足才会被回收
+
+
+weak reference
+无论内存是否充足，只能存活在下一次垃圾回收前， 
+只要垃圾回收启动， 不管当前内存情况， 都会被回收掉的。
+
+phantom reference
+最弱， 一个对象 是否有虚引用的存在， 完全不会对其生存时间构成影响， 也无法通过虚引用来获取到一个对象的实例。 
+设置虚引用的唯一目的就是这个对象灾在被回收前收到一个系统通知。
+
+
+
+
+

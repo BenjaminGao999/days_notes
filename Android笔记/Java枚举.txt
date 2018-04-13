@@ -1,0 +1,44 @@
+java 枚举 
+
+enum 枚举 默认继承了 Enum, 所以不可以再继承其他的类了， 但是可以实现接口
+
+https://blog.csdn.net/javazejian/article/details/71333103
+
+## 在接口里定义枚
+public interface Food {
+  enum Appetizer implements Food {
+    SALAD, SOUP, SPRING_ROLLS;
+  }
+  enum MainCourse implements Food {
+    LASAGNE, BURRITO, PAD_THAI,
+    LENTILS, HUMMOUS, VINDALOO;
+  }
+  enum Dessert implements Food {
+    TIRAMISU, GELATO, BLACK_FOREST_CAKE,
+    FRUIT, CREME_CARAMEL;
+  }
+  enum Coffee implements Food {
+    BLACK_COFFEE, DECAF_COFFEE, ESPRESSO,
+    LATTE, CAPPUCCINO, TEA, HERB_TEA;
+  }
+}
+
+public class TypeOfFood {
+  public static void main(String[] args) {
+    Food food = Appetizer.SALAD;
+    food = MainCourse.LASAGNE;
+    food = Dessert.GELATO;
+    food = Coffee.CAPPUCCINO;
+  }
+} 
+
+
+
+## 枚举与switch
+关于枚举与switch是个比较简单的话题，使用switch进行条件判断时，条件参数一般只能是整型，字符型。而枚举型确实也被switch所支持，在java 1.7后switch也对字符串进行了支持。这里我们简单看一下switch与枚举类型的使用：
+
+
+ A switch works with the byte, short, char, and int primitive data types. 
+ It also works with enumerated types (discussed in Enum Types), the String class, and a few special classes that wrap certain primitive types: Character, Byte, Short, and Integer (discussed in Numbers and Strings).
+ 
+ 

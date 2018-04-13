@@ -1,0 +1,131 @@
+java 锁
+
+## synchronized 修饰 实例方法
+
+/**
+     * synchronized 修饰实例方法
+     */
+    public synchronized void increase(){
+        i++;
+    }
+	
+	这里我们还需要意识到，当一个线程正在访问一个对象的 synchronized 实例方法，那么其他线程不能访问该对象的其他 synchronized 方法，毕竟一个对象只有一把锁，当一个线程获取了该对象的锁之后，其他线程无法获取该对象的锁，所以无法访问该对象的其他synchronized实例方法，但是其他线程还是可以访问该实例对象的其他非synchronized方法，当然如果是一个线程 A 需要访问实例对象 obj1 的 synchronized 方法 f1(当前对象锁是obj1)，另一个线程 B 需要访问实例对象 obj2 的 synchronized 方法 f2(当前对象锁是obj2)，这样是允许的，因为两个实例对象锁并不同相同，此时如果两个线程操作数据并非共享的，线程安全是有保障的，遗憾的是如果两个线程操作的是共享数据，那么线程安全就有可能无法保证了，
+	
+	
+	
+	
+## synchronized 修饰 静态方法
+
+
+	 /**
+     * 作用于静态方法,锁是当前class对象,也就是
+     * AccountingSyncClass类对应的class对象
+     */
+    public static synchronized void increase(){
+        i++;
+    }
+
+	
+
+## synchronized 修饰 同步代码块
+
+ @Override
+    public void run() {
+        //省略其他耗时操作....
+        //使用同步代码块对变量i进行同步操作,锁对象为instance
+        synchronized(instance){
+            for(int j=0;j<1000000;j++){
+                    i++;
+              }
+        }
+    }
+	
+	
+#### 锁
+https://fangjian0423.github.io/2016/03/12/java-Object-method/
+Object notify, notifyAll, wait
+Object 关于线程 同步锁的这几个方法， 应该是在 api内部使用的， 一般外部写代码根本用不到吧 
+
+
+### wait, notify, notifyAll 和锁有关，， 主要是获取锁 和 释放锁
+
+而锁就是个 并发 相关的概念
+
+
+wait方法会让当前线程等待直到另外一个线程调用对象的notify或notifyAll方法，或者超过参数设置的timeout超时时间。
+
+
+wait是不是 去放弃 cpu的争夺权 ， cpu调度器 在分配 cpu资源使用权的时候， 不会考虑这个线程了
+
+
+一般情况下，wait方法和notify方法会一起使用的，wait方法阻塞当前线程，notify方法唤醒当前线程，一个使用wait和notify方法的生产者消费者例子代码如下：
+
+
+## 多个线程公用一把锁
+同一个对象， 只有一把锁， 并且 一把锁在同一时间内只能服务于一个线程
+
+
+
+#### wait阻塞线程， 放弃锁对象，，， 
+
+
+#### notifyAll， 唤醒用同一把锁 被wait阻塞的线程，， 重新加入 cpu的争夺战
+
+比如这个博客的 生产者和消费者demo
+https://fangjian0423.github.io/2016/03/12/java-Object-method/
+
+
+
+## Concurrency 并发
+
+#### 	Runnbale比Thread常用的原因 
+Java 中实现多线程有两种方法：继承 Thread 类、实现 Runnable 接口，在程序开发中只要是多线程，肯定永远以实现 Runnable 接口为主，因为实现 Runnable 接口相比继承 Thread 类有如下优势：
+可以避免由于 Java 的单继承特性而带来的局限；（多了个继承父类的机会）
+增强程序的健壮性，代码能够被多个线程共享，代码与数据是独立的；
+适合多个相同程序代码的线程区处理同一资源的情况。
+
+
+###  这里补充下 yield 和 join 方法的使用。
+
+线程已经已经已经 夺取了CPU执行权
+联合
+join 方法用线程对象调用，如果在一个线程 A 中调用另一个线程 B 的 join 方法，线程 A 将会等待线程 B 执行完毕后再执行。  - 线程谦让 
+   // 联合其他线程， 把让出的cpu执行权， 交给指定的线程，， 在线程里面获取指定线程的同步结果
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+				
+				
+ 
+线程已经已经已经 夺取CPU执行权 
+退让
+yield 可以直接用 Thread 类调用，yield 让出 CPU 执行权给同等级的线程，如果没有相同级别的线程在等待 CPU 的执行权，则该线程继续执行。 -- 线程谦让
+A hint to the scheduler that the current thread is willing to yield its current use of a processor. The scheduler is free to ignore this hint.
+向调度程序提示当前线程愿意产生当前使用的处理器。 调度程序可以自由地忽略这个提示。
+
+在run方法里调的， 例如
+ // 让出CPU的执行权，， cpu调度器可以切换到其他线程，， 也可以选择不切换，， 所以这个方法就是个 hint， 这个方法不可控， 用不到的，， 
+//                System.out.println(Thread.currentThread().getName());
+                Thread.currentThread().yield();
+
+				
+
+
+
+### 线程睡觉
+
+ // 线程睡着的时候， 有没有机会被抢夺?  
+                    // 休眠的话线程会被别的线程给抢走， 等到休眠结束了， 重新加入到cpu执行权的争夺战中
+                    Thread.sleep(2000);
+
+					
+Java 中有两类线程：User Thread(用户线程)、Daemon Thread(守护线程)
+
+
+
+
+
+
+	
