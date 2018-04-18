@@ -1,0 +1,6 @@
+Error:com.android.builder.dexing.DexArchiveMergerException: Error while merging dex archives: E:\new_wallet_beautyCamera\new_wallet_beautyCameara\hangzhounewwalletforbeautycamera\build\intermediates\transforms\dexBuilder\debug\35, E:\new_wallet_beautyCamera\new_wallet_beautyCameara\hangzhounewwalletforbeautycamera\build\intermediates\transforms\externalLibsDexMerger\debug\0, E:\new_wallet_beautyCamera\new_wallet_beautyCameara\hangzhounewwalletforbeautycamera\build\intermediates\transforms\dexBuilder\debug\32.jar, E:\new_wallet_beautyCamera\new_wallet_beautyCameara\hangzhounewwalletforbeautycamera\build\intermediates\transforms\dexBuilder\debug\33.jar, 
+E:\new_wallet_beautyCamera\new_wallet_beautyCameara\hangzhounewwalletforbeautycamera\build\intermediates\transforms\dexBuilder\debug\34.jar
+
+
+库的包名和app的包名不可以一样的， 否则会导致 dex合并失败的
+
