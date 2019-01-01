@@ -1,0 +1,182 @@
+######## 搞下vpn
+
+# ip选择
+
+找到xxx.com, 找到到xxx.com 的全球机房、针对各个机房的ip测速， 用站长工具ping一下， 
+https://www.xxx.com/faq/ 地址在这
+在xxx.com的faq栏里的technical目录里
+
+
+ip地址选好后， 就去deploy一个服务器吧
+我去 Frankfurt deploy一个
+ 
+
+Unable to destroy VPS: Servers cannot be destroyed within 5 minutes of being created
+
+
+# 准备xShell
+xShell 用来与远程server建立链接
+
+
+# 我得时刻折腾下我的这个服务器
+服务端软件怎么去部署
+
+
+
+# 服务端软件怎么去部署
+
+
+安装shadowsocksr server
+
+## 升级centos内核
+
+来自 https://www.8dlive.com/post/415.html
+
+1）RMP安装（推荐）
+
+先更新到7.3，安装elrepo官方4.9正式版
+
+YUM 更新
+
+
+yum update -y
+查看内核版本
+
+
+cat /etc/redhat-release
+#CentOS Linux release 7.3.1611 (Core)
+安装
+
+
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install kernel-ml -y
+查看内核是否安装成功
+rpm -qa | grep kernel
+
+更新 grub 系统引导文件并重启
+egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'
+grub2-set-default 0  #default 0表示第一个内核设置为默认运行, 选择最新内核就对了
+reboot
+开机后 uname -r 看看是不是内核4.9
+
+开启bbr
+
+vim /etc/sysctl.conf
+#vi /etc/sysctl.conf
+加两行：
+
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+保存生效
+
+sysctl -p
+执行
+
+sysctl net.ipv4.tcp_available_congestion_control
+如果结果中有bbr, 则证明你的内核已开启bbr
+
+执行
+
+
+lsmod | grep bbr
+看到有 tcp_bbr 模块即说明bbr已启动
+
+
+##  ssr 安装，配置，启动
+
+yum install git
+git clone -b manyuser https://github.com/breakwa11/shadowsocks.git #(原项目被和谐了，用这个备份的https://github.com/shadowsocksr-backup/shadowsocksr.git)
+用这个
+git clone -b manyuser https://github.com/shadowsocksr-backup/shadowsocksr.git
+
+cd ~/shadowsocksr
+bash initcfg.sh
+vi user-config.json #去改配置
+
+cd shadowsocks
+python server.py -d start
+tail -f /var/log/shadowsocksr.log
+更新
+cd shadowsocks
+git pull
+python server.py -d stop/start
+
+# 开启防火墙。
+
+systemctl start firewalld
+firewall-cmd --zone=public --add-port=1000/tcp --permanent
+firewall-cmd --reload
+
+# 重新开启
+python server.py -d restart
+
+
+
+## 配置自启动
+https://github.com/Ssrbackup/shadowsocks-rss/wiki/System-startup-script
+
+
+
+#### 怎么配置
+{
+	"server": "0.0.0.0",
+	"server_ipv6": "::",
+	"server_port": 1000,
+	"local_address": "127.0.0.1",
+	"local_port": 1080,
+	"password": "xxx",
+	"timeout": 600,
+	"udp_timeout": 60,
+	"method": "aes-256-cfb",
+	"protocol": "auth_sha1_v4_compatible",
+	"protocol_param": "",
+	"obfs": "tls1.2_ticket_auth_compatible",
+	"obfs_param": "",
+	"dns_ipv6": false,
+	"connect_verbose_info": 0,
+	"redirect": "",
+	"fast_open": false
+}
+
+
+
+# 注意问题
+
+## 千万要注意加密协议和混淆协议
+Shadowsocks客户端仅仅支持，千万不要搞错了。
+
+{
+	"server": "0.0.0.0",
+	"server_ipv6": "::",
+	"server_port": 1000,
+	"local_address": "127.0.0.1",
+	"local_port": 1080,
+	"password": "xxx",
+	"timeout": 600,
+	"udp_timeout": 60,
+	"method": "aes-256-cfb",
+	"protocol": "auth_sha1_v4_compatible",
+	"protocol_param": "",
+	"obfs": "tls1.2_ticket_auth_compatible",
+	"obfs_param": "",
+	"dns_ipv6": false,
+	"connect_verbose_info": 0,
+	"redirect": "",
+	"fast_open": false
+}
+
+
+## 千万要注意从git仓库下载shadowsocks时必须要用下面的命令行
+git clone -b manyuser https://github.com/shadowsocksr-backup/shadowsocksr.git
+
+绝对不能单独的 
+git clone https://github.com/shadowsocksr-backup/shadowsocksr.git
+
+一定要clone的是manyuser 分支的代码；
+
+
+
+
+
+
